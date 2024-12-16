@@ -2,9 +2,12 @@ import React from 'react';
 import Navbar from './component/Navbar';
 import Layanan from './component/Layanan';
 import Portofolio from './component/Portofolio';
+import Konsultasi from './component/Konsultasi';
+import Team from './component/Team';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import Teknologi from './component/Teknologi';
 
 
 
@@ -33,8 +36,8 @@ function App() {
         </button>
       </section>
       
-      <section id="about" className="min-h-screen bg-white py-24 px-8">
-        <h2 className="text-4xl font-bold text-center mb-12 text-blue-900">TENTANG BRAINCORE.ID</h2>
+      <section id="about" className="bg-white py-24 px-8">
+        <h2 className="text-4xl font-bold text-center mb-12 text-[#38517E]">TENTANG BRAINCORE.ID</h2>
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Latar Belakang */}
           <div>
@@ -60,15 +63,25 @@ function App() {
           </div>
         </div>
       </section>
-      
-      <Layanan />
-      
-      <section id="portfolio" >
-        <Portofolio />
+         
+      <section id="services" className="min-h-screen">
+        <Layanan />
       </section>
       
-      <section id="team" className="h-screen bg-blue-600 flex items-center justify-center">
-        <h2 className="text-3xl">Tim</h2>
+      <section >
+        <Portofolio />
+      </section>
+
+      <section className=" bg-gray-100 pb-8 flex items-center justify-center">
+        <Teknologi />
+      </section>
+      
+      <section id="consultation" className="py-16 bg-[#38517E] flex items-center justify-center">
+        <Konsultasi />
+      </section>
+
+      <section id="team" className="h-screen bg-blue-200 flex items-center justify-center">
+        <Team />
       </section>
 
       <section id="achievements" className="h-screen bg-blue-700 flex items-center justify-center">

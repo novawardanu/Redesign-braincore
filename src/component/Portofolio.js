@@ -43,7 +43,7 @@ const Portofolio = () => {
 
   return (
     <section id="portfolio" className="bg-white py-24 px-4">
-      <h2 className="text-4xl font-bold text-center mb-8 text-gray-800">PORTOFOLIO</h2>
+      <h2 className="text-4xl font-bold text-center mb-8 text-[#38517E]">PORTOFOLIO</h2>
 
       {/* Portfolio Cards - Hanya 3 Teratas */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 container mx-auto">
