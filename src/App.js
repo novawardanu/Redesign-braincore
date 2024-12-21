@@ -3,12 +3,11 @@ import Navbar from './component/Navbar';
 import Layanan from './component/Layanan';
 import Portofolio from './component/Portofolio';
 import Konsultasi from './component/Konsultasi';
-import Team from './component/Team';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import Teknologi from './component/Teknologi';
-
+import TeamSection from './component/TeamSection';
 
 
 function App() {
@@ -80,8 +79,8 @@ function App() {
         <Konsultasi />
       </section>
 
-      <section id="team" className="h-screen bg-blue-200 flex items-center justify-center">
-        <Team />
+      <section id="team" className="h-screen bg-[blue-200] flex items-center justify-center">
+        <TeamSection/>
       </section>
 
       <section id="achievements" className="h-screen bg-blue-700 flex items-center justify-center">

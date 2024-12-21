@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Navbar.css';
+import '../style/Carousel.css';
 
 function Navbar() {
   const [activeLink, setActiveLink] = useState('');

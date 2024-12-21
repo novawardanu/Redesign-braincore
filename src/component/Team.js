@@ -1,66 +1,124 @@
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Autoplay } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import './Team.css';
+import { useEffect, useState } from "react";
+import "../style/Carousel.css";
 
-const teamMembers = [
-  {
-    name: "Erik Julianto",
-    role: "Research Analyst",
-    interests: "Artificial Intelligence, Blockchain, Internet of Things",
-    image: "/placeholder.png", // Ganti dengan gambar nyata
-  },
-  {
-    name: "Jane Doe",
-    role: "AI Engineer",
-    interests: "Machine Learning, Computer Vision",
-    image: "/placeholder.png",
-  },
-  {
-    name: "John Smith",
-    role: "Data Scientist",
-    interests: "Data Analysis, Deep Learning",
-    image: "/placeholder.png",
-  },
-];
+function Carousel() {
+  const [current, setCurrent] = useState(0);
+  const [autoPlay, setAutoPlay] = useState(true);
+  let timeOut = null;
 
-const Team = () => {
+  const team = [
+    {
+      image: "/images/brazil.jpg",
+      name: "Bravo",
+      role: "Research Analyst",
+      area: "Artificial Intelligence, Blockchain, Cyber Security",
+      socials: [
+        { icon: "facebook", link: "https://facebook.com/bravo" },
+        { icon: "twitter", link: "https://twitter.com/bravo" },
+        { icon: "linkedin", link: "https://linkedin.com/in/bravo" },
+      ],
+    },
+    {
+      image: "/images/china.jpg",
+      name: "Erik Julianto",
+      role: "Research Analyst",
+      area: "Artificial Intelligence, Blockchain, Cyber Security",
+      socials: [
+        { icon: "facebook", link: "https://facebook.com/erik" },
+        { icon: "twitter", link: "https://twitter.com/erik" },
+        { icon: "linkedin", link: "https://linkedin.com/in/erik" },
+      ],
+    },
+    // Tambahkan data anggota lainnya...
+  ];
+  
+
+  useEffect(() => {
+    timeOut =
+      autoPlay &&
+      setTimeout(() => {
+        slideRight();
+      }, 2500);
+    return () => clearTimeout(timeOut); // Clear timeout to prevent memory leaks
+  }, [current, autoPlay]);
+
+  const slideRight = () => {
+    setCurrent(current === team.length - 1 ? 0 : current + 1);
+  };
+
+  const slideLeft = () => {
+    setCurrent(current === 0 ? team.length - 1 : current - 1);
+  };
+
   return (
-    <section id="team" className="team-container">
-      <h2 className="team-title">TEAM</h2>
-      <p className="team-description">
-        Dalam perkembangan Braincore.id, ada tim hebat yang berisikan orang-orang luar biasa
-        yang ahli di bidangnya masing-masing dan saling bekerja sama dalam pengembangan Braincore.id.
-      </p>
-      <Swiper
-        modules={[Navigation, Autoplay]}
-        spaceBetween={50}
-        slidesPerView={1}
-        navigation
-        autoplay={{ delay: 3000, disableOnInteraction: false }}
-        loop={true}
-        className="team-carousel"
-      >
-        {teamMembers.map((member, index) => (
-          <SwiperSlide key={index} className="team-slide">
-            <div className="team-card">
-              <img src={member.image} alt={member.name} className="team-image" />
-              <h3 className="team-name">{member.name}</h3>
-              <p className="team-role">{member.role}</p>
-              <p className="team-interests">{member.interests}</p>
-              <div className="team-socials">
-                <i className="fab fa-facebook"></i>
-                <i className="fab fa-linkedin"></i>
-                <i className="fab fa-twitter"></i>
+    <div
+      className="carousel"
+      onMouseEnter={() => {
+        setAutoPlay(false);
+        clearTimeout(timeOut);
+      }}
+      onMouseLeave={() => {
+        setAutoPlay(true);
+      }}
+    >
+      <div className="carousel_wrapper">
+        {team.map((country, index) => (
+          <div
+            key={index}
+            className={
+              index === current
+                ? "carousel_card carousel_card-active"
+                : "carousel_card"
+            }
+          >
+            <div className="card_circle">
+              <img className="card_image" src={country.image} alt={country.name} />
+            </div>
+            <div className="card_overlay">
+              <h2 className="card_name ">{country.name}</h2>
+              <h4 className="card_role ">{country.role}</h4>
+              <div className="card_separator"></div>
+              <h4 className="card_label">Area of Interest:</h4>
+              <p className="card_interests">{country.area}</p>
+
+              <div className="card_socials">
+                {country.socials.map((social, i) => (
+                  <a
+                    key={i}
+                    href={social.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`social_icon social_icon-${social.icon}`}
+                  >
+                    <i className={`fab fa-${social.icon}`}></i>
+                  </a>
+                ))}
               </div>
             </div>
-          </SwiperSlide>
+          </div>
         ))}
-      </Swiper>
-    </section>
+        <div className="carousel_arrow_left" onClick={slideLeft}>
+          &lsaquo;
+        </div>
+        <div className="carousel_arrow_right" onClick={slideRight}>
+          &rsaquo;
+        </div>
+        <div className="carousel_pagination">
+          {team.map((_, index) => (
+            <div
+              key={index}
+              className={
+                index === current
+                  ? "pagination_dot pagination_dot-active"
+                  : "pagination_dot"
+              }
+              onClick={() => setCurrent(index)}
+            ></div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
-};
+}
 
-export default Team;
+export default Carousel;
