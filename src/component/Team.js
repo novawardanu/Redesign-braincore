@@ -9,28 +9,87 @@ function Carousel() {
   const team = [
     {
       image: "/images/brazil.jpg",
-      name: "Bravo",
-      role: "Research Analyst",
-      area: "Artificial Intelligence, Blockchain, Cyber Security",
-      socials: [
-        { icon: "facebook", link: "https://facebook.com/bravo" },
-        { icon: "twitter", link: "https://twitter.com/bravo" },
-        { icon: "linkedin", link: "https://linkedin.com/in/bravo" },
-      ],
-    },
-    {
-      image: "/images/china.jpg",
       name: "Erik Julianto",
       role: "Research Analyst",
       area: "Artificial Intelligence, Blockchain, Cyber Security",
       socials: [
-        { icon: "facebook", link: "https://facebook.com/erik" },
-        { icon: "twitter", link: "https://twitter.com/erik" },
-        { icon: "linkedin", link: "https://linkedin.com/in/erik" },
+        {
+          platform: "facebook",
+          link: "https://facebook.com/bravo",
+        },
+        {
+          platform: "twitter",
+          link: "https://twitter.com/bravo",
+        },
+        {
+          platform: "instagram",
+          link: "https://instagram.com/bravo",
+        },
       ],
     },
-    // Tambahkan data anggota lainnya...
+    {
+      image: "/images/brazil.jpg",
+      name: "Apis",
+      role: "Research Analyst",
+      area: "Artificial Intelligence, Blockchain, Cyber Security",
+      socials: [
+        {
+          platform: "facebook",
+          link: "https://facebook.com/bravo",
+        },
+        {
+          platform: "twitter",
+          link: "https://twitter.com/bravo",
+        },
+        {
+          platform: "instagram",
+          link: "https://instagram.com/bravo",
+        },
+      ],
+    },
+    {
+      image: "/images/brazil.jpg",
+      name: "Dian Alhausari",
+      role: "Research Analyst",
+      area: "Artificial Intelligence, Blockchain, Cyber Security",
+      socials: [
+        {
+          platform: "facebook",
+          link: "https://facebook.com/bravo",
+        },
+        {
+          platform: "twitter",
+          link: "https://twitter.com/bravo",
+        },
+        {
+          platform: "instagram",
+          link: "https://instagram.com/bravo",
+        },
+      ],
+    },
+    {
+      image: "/images/brazil.jpg",
+      name: "Gucci",
+      role: "Research Analyst",
+      area: "Artificial Intelligence, Blockchain, Cyber Security",
+      socials: [
+        {
+          platform: "facebook",
+          link: "https://facebook.com/bravo",
+        },
+        {
+          platform: "twitter",
+          link: "https://twitter.com/bravo",
+        },
+        {
+          platform: "instagram",
+          link: "https://instagram.com/bravo",
+        },
+      ],
+    },
+    // Tambahkan anggota lainnya...
   ];
+  
   
 
   useEffect(() => {
@@ -82,18 +141,35 @@ function Carousel() {
               <p className="card_interests">{country.area}</p>
 
               <div className="card_socials">
-                {country.socials.map((social, i) => (
+                {country.socials.map((social, index) => (
                   <a
-                    key={i}
+                    key={index}
                     href={social.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`social_icon social_icon-${social.icon}`}
+                    className="social_circle"
                   >
-                    <i className={`fab fa-${social.icon}`}></i>
+                    {social.platform === "facebook" && (
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="social_icon">
+                        <path d="M9 8.5v2.5H7v3h2v7h3v-7h2.6l.4-3h-3V9.3c0-.8.2-1.2 1.3-1.2H15V5.2c-.2 0-1-.2-2.5-.2-2.5 0-4 1.5-4 4v1.5z" />
+                      </svg>
+                    
+                    
+                    )}
+                    {social.platform === "twitter" && (
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="social_icon">
+                        <path d="M22.46 6c-.77.34-1.6.57-2.46.67a4.27 4.27 0 0 0 1.88-2.35 8.52 8.52 0 0 1-2.7 1.03 4.26 4.26 0 0 0-7.27 3.88A12.09 12.09 0 0 1 3.11 4.84a4.26 4.26 0 0 0 1.32 5.68c-.64-.02-1.25-.2-1.78-.5v.05a4.26 4.26 0 0 0 3.42 4.18c-.58.16-1.2.18-1.83.07a4.27 4.27 0 0 0 3.99 2.97A8.54 8.54 0 0 1 2 18.13a12.06 12.06 0 0 0 6.56 1.92c7.88 0 12.2-6.53 12.2-12.2 0-.19-.01-.37-.02-.56A8.64 8.64 0 0 0 22.46 6z" />
+                      </svg>
+                    )}
+                    {social.platform === "instagram" && (
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="social_icon">
+                        <path d="M7.75 2h8.5C20.55 2 22 3.45 22 7.75v8.5C22 20.55 20.55 22 16.25 22h-8.5C3.45 22 2 20.55 2 16.25v-8.5C2 3.45 3.45 2 7.75 2zm0 2C5.5 4 4 5.5 4 7.75v8.5C4 18.5 5.5 20 7.75 20h8.5C18.5 20 20 18.5 20 16.25v-8.5C20 5.5 18.5 4 16.25 4h-8.5zm4.25 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.25-.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                      </svg>
+                    )}
                   </a>
                 ))}
               </div>
+
             </div>
           </div>
         ))}

@@ -49,7 +49,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -200px;
+    margin-top: -210px;
   }
   
   .card_image {
@@ -68,7 +68,7 @@
     padding: 20px;
     color: white;
     text-align: center;
-    margin-top: 180px;
+    margin-top: 220px;
   }
   
   .card_overlay .card_name {
@@ -103,6 +103,39 @@
   color: #DDDDDD;
   width: 80%;
   margin: 2px 0; /* Margin negatif */
+}
+
+.card_socials {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.social_circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #ebf2ff; /* Warna awal lingkaran */
+  transition: all 0.3s ease;
+}
+
+.social_icon {
+  width: 60%;
+  height: 60%;
+  fill: #38517e; /* Warna awal ikon */
+  transition: all 0.3s ease;
+}
+
+.social_circle:hover {
+  background-color: #5ad8ff; /* Warna lingkaran saat hover */
+  transform: scale(1.05); /* Efek zoom */
+}
+
+.social_circle:hover .social_icon {
+  fill: #ffffff; /* Warna ikon saat hover */
 }
 
 

@@ -8,6 +8,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import Teknologi from './component/Teknologi';
 import TeamSection from './component/TeamSection';
+import Pencapaian from './component/Pencapaian';
 
 
 function App() {
@@ -83,8 +84,8 @@ function App() {
         <TeamSection/>
       </section>
 
-      <section id="achievements" className="h-screen bg-blue-700 flex items-center justify-center">
-        <h2 className="text-3xl">Pencapaian</h2>
+      <section>
+        <Pencapaian/>
       </section>
       
       <section id="contact" className="h-screen bg-blue-800 flex items-center justify-center">
