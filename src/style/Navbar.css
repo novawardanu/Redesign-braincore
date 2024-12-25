@@ -5,6 +5,8 @@
 nav {
     width: 200px;
     border-left: 2px solid #ffffff33; /* Garis pemisah antara konten dan navbar */
+    transition: background-color 0.8s ease-in-out, opacity 0.8s ease-in-out;
+    will-change: background-color, opacity;
   }
   
   ul {

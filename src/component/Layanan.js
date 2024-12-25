@@ -63,9 +63,9 @@ const ServiceCard = ({ icon, title, description }) => {
 // Komponen Utama
 const Layanan = () => {
   return (
-    <section className="py-24 bg-gray-100">
+    <section className="py-24 bg-[#F3F5F9]">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center text-[#38517E] mb-4">LAYANAN</h2>
+        <h2 className="text-4xl font-bold text-center text-[#38517E] mb-4">LAYANAN</h2>
         <p className="text-gray-600 text-center mb-12">
           Braincore.id menawarkan berbagai layanan yang dapat membantu masyarakat umum dalam manfaat Kecerdasan Buatan.
         </p>

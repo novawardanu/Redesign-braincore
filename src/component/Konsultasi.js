@@ -5,11 +5,11 @@ const Konsultasi = () => {
     <section className="bg-[#38517E] py-12">
       <div className="container mx-auto px-4 flex flex-col items-center text-center">
         {/* Judul Utama */}
-        <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">
+        <h1 className="text-4xl font-bold text-white mb-4">
           KONSULTASI
         </h1>
         {/* Deskripsi Pendek */}
-        <p className="text-gray-300 mb-8">
+        <p className="text-gray-300 mb-14">
           Konsultasikan proyek AI Anda bersama Braincore
         </p>
 
@@ -26,7 +26,7 @@ const Konsultasi = () => {
           {/* Konten */}
           <div className="w-full md:w-2/3 text-white text-center md:text-left">
             {/* Judul Besar */}
-            <h2 className="text-xl md:text-4xl font-bold mb-4">
+            <h2 className="text-xl md:text-3xl font-bold mb-4">
               Konsultasikan proyek AI Anda <br /> bersama Braincore
             </h2>
 

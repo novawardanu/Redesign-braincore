@@ -9,6 +9,9 @@ import 'swiper/css/pagination';
 import Teknologi from './component/Teknologi';
 import TeamSection from './component/TeamSection';
 import Pencapaian from './component/Pencapaian';
+import Kontak from './component/Kontak';
+import Blog from './component/Blog'
+import Footer from './component/Footer';
 
 
 function App() {
@@ -16,26 +19,23 @@ function App() {
     <div>
       <Navbar />
       <section
-        id="home" className="relative min-h-screen flex flex-col items-center justify-center bg-[#38517E] text-white">
-        {/* <div className="absolute top-4 left-4 flex items-center">
-          <img
-            src="/logo.png" // lll
-            alt="Braincore Logo"
-            className="h-12 mr-2"
-          />
-          <span className="text-xl font-bold">BRAINCORE</span>
-        </div> */}
-
+        id="home"
+        className="relative min-h-screen flex flex-col items-center justify-center bg-cover bg-center text-white px-4 md:px-8"
+        style={{ backgroundImage: "url('/images/baru.png')" }}
+      >
         {/* Konten utama */}
-        <h1 className="text-5xl font-bold mb-4">Jasa Konsultasi dan Pengerjaan Proyek AI</h1>
-        <p className="text-xl text-center max-w-2xl">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-center leading-tight">
+          Jasa Konsultasi dan Pengerjaan Proyek AI
+        </h1>
+        <p className="text-base sm:text-lg lg:text-xl text-center max-w-xl lg:max-w-2xl">
           Data Science, Machine Learning, dan Artificial Intelligence untuk pelajar dan pekerja profesional.
         </p>
-        <button className="mt-6 bg-[#4CBDDF] hover:bg-[#309BBB] font-bold text-white py-2 px-4 rounded-[40px] transition-colors duration-300 ease-in-out">
+        <button className="mt-6 bg-[#4CBDDF] hover:bg-[#309BBB] font-bold text-white py-2 px-6 sm:px-8 lg:px-10 rounded-[40px] transition-colors duration-300 ease-in-out">
           Mulai Cari Tahu
         </button>
       </section>
-      
+
+
       <section id="about" className="bg-white py-24 px-8">
         <h2 className="text-4xl font-bold text-center mb-12 text-[#38517E]">TENTANG BRAINCORE.ID</h2>
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -88,12 +88,16 @@ function App() {
         <Pencapaian/>
       </section>
       
-      <section id="contact" className="h-screen bg-blue-800 flex items-center justify-center">
-        <h2 className="text-3xl">Kontak</h2>
+      <section >
+        <Kontak/>
       </section>
 
-      <section id="blog" className="h-screen bg-blue-900 flex items-center justify-center">
-        <h2 className="text-3xl">Blog</h2>
+      <section>
+        <Blog />
+      </section>
+
+      <section>
+        <Footer />
       </section>
     </div>
   );

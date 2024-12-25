@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 
 const Portofolio = () => {
   const portfolioItems = [
-    { title: 'Door Lock System', description: 'by Face Recognition', image: 'https://via.placeholder.com/400x250' },
-    { title: 'AI Object Counting', description: 'Embedded System', image: 'https://via.placeholder.com/400x250' },
-    { title: 'IoT Monitoring', description: 'Real-Time Dashboard', image: 'https://via.placeholder.com/400x250' },
+    { title: 'Land Mark Detection', description: 'by Face Recognition', image: '/images/Porto1.png' },
+    { title: 'AI Object Counting', description: 'Embedded System', image: '/images/Porto2.png' },
+    { title: 'IoT Monitoring', description: 'Real-Time Dashboard', image: '/images/Porto3.png' },
     { title: 'Object Detection', description: 'Real-Time Dashboard', image: 'https://via.placeholder.com/400x250' },
     { title: 'Computer Vision', description: 'Real-Time Dashboard', image: 'https://via.placeholder.com/400x250' },
     { title: 'Blockchain', description: 'Real-Time Dashboard', image: 'https://via.placeholder.com/400x250' },
@@ -49,7 +49,13 @@ const Portofolio = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 container mx-auto">
         {initialItems.map((item, index) => (
           <div key={index} className="relative group overflow-hidden rounded-lg shadow-lg">
-            <img src={item.image} alt={item.title} className="w-full h-64 object-cover" />
+            <div className="aspect-w-16 aspect-h-9">
+              <img
+                src={item.image}
+                alt={item.title}
+                className="w-full h-full object-cover"
+              />
+            </div>
             <div className="absolute inset-0 bg-gradient-to-t from-blue-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-4">
               <div>
                 <h3 className="text-white font-bold text-lg">{item.title}</h3>
@@ -92,7 +98,13 @@ const Portofolio = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {portfolioItems.map((item, index) => (
                 <div key={index} className="relative group overflow-hidden rounded-lg shadow-lg">
-                  <img src={item.image} alt={item.title} className="w-full h-48 object-cover" />
+                  <div className="aspect-w-16 aspect-h-9">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-blue-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-4">
                     <div>
                       <h3 className="text-white font-bold text-lg">{item.title}</h3>
