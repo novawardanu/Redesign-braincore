@@ -1,7 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import "animate.css"; // Pastikan animate.css diimpor
 
 const FAQAccordion = () => {
   const [activeIndex, setActiveIndex] = useState(null);
+  const [isHeaderVisible, setIsHeaderVisible] = useState(false);
+  const [isAccordionVisible, setIsAccordionVisible] = useState(false);
+
+  const headerRef = useRef(null);
+  const accordionRef = useRef([]);
 
   const toggleAccordion = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
@@ -30,16 +36,66 @@ const FAQAccordion = () => {
     },
   ];
 
+  useEffect(() => {
+    // Capture current refs in variables
+    const currentHeaderRef = headerRef.current;
+    const currentAccordionRef = accordionRef.current;
+
+    if (!currentHeaderRef || !currentAccordionRef) return;
+
+    const headerObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsHeaderVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const accordionObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsAccordionVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (currentHeaderRef) headerObserver.observe(currentHeaderRef);
+    currentAccordionRef.forEach((item) => {
+      if (item) accordionObserver.observe(item);
+    });
+
+    return () => {
+      if (currentHeaderRef) headerObserver.unobserve(currentHeaderRef);
+      currentAccordionRef.forEach((item) => {
+        if (item) accordionObserver.unobserve(item);
+      });
+    };
+  }, []);
+
   return (
     <div className="bg-gradient-to-b from-blue-50 to-white py-12 px-4 md:px-8">
-      <h2 className="text-4xl font-extrabold text-center text-[#38517E] mb-8">
+      {/* Header */}
+      <h2
+        ref={headerRef}
+        className={`text-4xl font-extrabold text-center text-[#38517E] mb-8 ${
+          isHeaderVisible ? "animate__animated animate__fadeInUp" : ""
+        }`}
+        style={{ animationDuration: "2s" }}
+      >
         Frequently Asked Questions
       </h2>
       <div className="max-w-4xl mx-auto space-y-4">
+        {/* FAQ List */}
         {faqs.map((faq, index) => (
           <div
+            ref={(el) => (accordionRef.current[index] = el)}
             key={index}
-            className="rounded-lg overflow-hidden shadow-md transition-all duration-300 border border-gray-200"
+            className={`rounded-lg overflow-hidden shadow-md transition-all duration-300 border border-gray-200 ${
+              isAccordionVisible ? "animate__animated animate__fadeInUp" : ""
+            }`}
+            style={{ animationDuration: "2s" }}
           >
             <button
               onClick={() => toggleAccordion(index)}

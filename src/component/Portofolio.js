@@ -1,21 +1,37 @@
 import React, { useState, useEffect } from 'react';
+import 'animate.css'; // Pastikan animate.css diimpor
+import { useInView } from 'react-intersection-observer';
 
 const Portofolio = () => {
   const portfolioItems = [
-    { title: 'Land Mark Detection', description: 'by Face Recognition', image: '/images/Porto1.png' },
-    { title: 'AI Object Counting', description: 'Embedded System', image: '/images/Porto2.png' },
-    { title: 'IoT Monitoring', description: 'Real-Time Dashboard', image: '/images/Porto3.png' },
-    { title: 'Object Detection', description: 'Real-Time Dashboard', image: 'https://via.placeholder.com/400x250' },
-    { title: 'Computer Vision', description: 'Real-Time Dashboard', image: 'https://via.placeholder.com/400x250' },
-    { title: 'Blockchain', description: 'Real-Time Dashboard', image: 'https://via.placeholder.com/400x250' },
-    { title: 'Door Lock System', description: 'by Face Recognition', image: 'https://via.placeholder.com/400x250' },
-    { title: 'AI Object Counting', description: 'Embedded System', image: 'https://via.placeholder.com/400x250' },
-    { title: 'IoT Monitoring', description: 'Real-Time Dashboard', image: 'https://via.placeholder.com/400x250' },
+    { title: 'Land Mark Detection', description: 'by Face Recognition', image: '/images/Porto1.png', link: 'https://www.google.com' },
+    { title: 'AI Object Counting', description: 'Embedded System', image: '/images/Porto2.png', link: 'https://www.google.com' },
+    { title: 'IoT Monitoring', description: 'Real-Time Dashboard', image: '/images/Porto3.png', link: 'https://www.google.com' },
+    { title: 'Object Detection', description: 'Real-Time Dashboard', image: 'https://via.placeholder.com/400x250', link: 'https://example.com/porto4' },
+    { title: 'Computer Vision', description: 'Real-Time Dashboard', image: 'https://via.placeholder.com/400x250', link: 'https://example.com/porto5' },
+    { title: 'Blockchain', description: 'Real-Time Dashboard', image: 'https://via.placeholder.com/400x250', link: 'https://example.com/porto6' },
+    { title: 'Door Lock System', description: 'by Face Recognition', image: 'https://via.placeholder.com/400x250', link: 'https://example.com/porto7' },
+    { title: 'AI Object Counting', description: 'Embedded System', image: 'https://via.placeholder.com/400x250', link: 'https://example.com/porto8' },
+    { title: 'IoT Monitoring', description: 'Real-Time Dashboard', image: 'https://via.placeholder.com/400x250', link: 'https://example.com/porto9' },
   ];
 
   const [showModal, setShowModal] = useState(false);
   const [isOpening, setIsOpening] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
+
+  const [isHeaderVisible, setIsHeaderVisible] = useState(false);
+  const [isCardsVisible, setIsCardsVisible] = useState(false);
+  const [isButtonVisible, setIsButtonVisible] = useState(false);
+
+  const { ref: headerRef, inView: isHeaderInView } = useInView({ triggerOnce: true });
+  const { ref: cardsRef, inView: isCardsInView } = useInView({ triggerOnce: true });
+  const { ref: buttonRef, inView: isButtonInView } = useInView({ triggerOnce: true });
+
+  useEffect(() => {
+    setIsHeaderVisible(isHeaderInView);
+    setIsCardsVisible(isCardsInView);
+    setIsButtonVisible(isButtonInView);
+  }, [isHeaderInView, isCardsInView, isButtonInView]);
 
   useEffect(() => {
     if (showModal) {
@@ -43,17 +59,32 @@ const Portofolio = () => {
 
   return (
     <section id="portfolio" className="bg-white py-24 px-4">
-      <h2 className="text-4xl font-bold text-center mb-8 text-[#38517E]">PORTOFOLIO</h2>
+      <h2
+        ref={headerRef}
+        className={`text-4xl font-bold text-center mb-8 text-[#38517E] ${
+          isHeaderVisible ? 'animate__animated animate__fadeInUp' : ''
+        }`}
+        style={{ animationDuration: '2s' }}
+      >
+        PORTOFOLIO
+      </h2>
 
       {/* Portfolio Cards - Hanya 3 Teratas */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 container mx-auto">
+      <div
+        ref={cardsRef}
+        className={`grid grid-cols-1 md:grid-cols-3 gap-8 container mx-auto ${
+          isCardsVisible ? 'animate__animated animate__fadeIn' : ''
+        }`}
+        style={{ animationDuration: '2s', animationDelay: '0.7s' }}
+      >
         {initialItems.map((item, index) => (
-          <div key={index} className="relative group overflow-hidden rounded-lg shadow-lg">
+          <div key={index} className="relative group overflow-hidden rounded-lg shadow-lg" onClick={() => window.open(item.link, '_blank')}>
             <div className="aspect-w-16 aspect-h-9">
               <img
                 src={item.image}
                 alt={item.title}
                 className="w-full h-full object-cover"
+                onClick={() => window.open(item.link, '_blank')}
               />
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-blue-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-4">
@@ -69,8 +100,12 @@ const Portofolio = () => {
       {/* Lihat Lebih Banyak */}
       <div className="text-center mt-8">
         <button
+          ref={buttonRef}
           onClick={handleOpenModal}
-          className="text-blue-500 font-semibold border-2 border-blue-500 px-6 py-2 rounded-full hover:bg-blue-500 hover:text-white transition duration-300 transform hover:scale-105"
+          className={`text-blue-500 font-semibold border-2 border-blue-500 px-6 py-2 rounded-full hover:bg-blue-500 hover:text-white transition duration-300 transform hover:scale-105 ${
+            isButtonVisible ? 'animate__animated animate__fadeInUp' : ''
+          }`}
+          style={{ animationDuration: '2s', animationDelay: '0.5s' }}
         >
           Lihat Lebih Banyak
         </button>
@@ -103,6 +138,7 @@ const Portofolio = () => {
                       src={item.image}
                       alt={item.title}
                       className="w-full h-full object-cover"
+                      onClick={() => window.open(item.link, '_blank')}
                     />
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-blue-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-4">

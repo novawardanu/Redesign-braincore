@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import 'animate.css'; // Pastikan animate.css diimpor
 
 function Blog() {
   const blogs = [
@@ -46,18 +47,72 @@ function Blog() {
     },
   ];
 
+  const [isHeaderVisible, setIsHeaderVisible] = useState(false);
+  const [isBlogVisible, setIsBlogVisible] = useState(false);
+
+  useEffect(() => {
+    const headerObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsHeaderVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const blogObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsBlogVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const headerElement = document.getElementById('blog-header');
+    const blogElement = document.getElementById('blog-section');
+    
+    if (headerElement) headerObserver.observe(headerElement);
+    if (blogElement) blogObserver.observe(blogElement);
+
+    return () => {
+      if (headerElement) headerObserver.unobserve(headerElement);
+      if (blogElement) blogObserver.unobserve(blogElement);
+    };
+  }, []);
+
   return (
     <section
       id="blog"
-      className="py-16 bg-gray-50 flex flex-col items-center justify-center"
+      className="py-24 bg-gray-50 flex flex-col items-center justify-center"
     >
-      <h2 className="text-4xl font-bold text-center text-[#38517E] mb-2">
+      {/* Header */}
+      <h2
+        id="blog-header"
+        className={`text-4xl font-bold text-center text-[#38517E] mb-2 ${
+          isHeaderVisible ? 'animate__animated animate__fadeInUp' : ''
+        }`}
+        style={{ animationDuration: '2s' }}
+      >
         BLOG
       </h2>
-      <p className="text-center text-gray-600 mb-12">
+      <p
+        className={`text-center text-gray-600 mb-12 ${
+          isHeaderVisible ? 'animate__animated animate__fadeInUp' : ''
+        }`}
+        style={{ animationDuration: '2s' }}
+      >
         Tulisan dari Blog Braincore
       </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+
+      {/* Blog List */}
+      <div
+        id="blog-section"
+        className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto ${
+          isBlogVisible ? 'animate__animated animate__zoomIn' : ''
+        }`}
+        style={{ animationDuration: '2s' }}
+      >
         {blogs.map((blog) => (
           <a
             key={blog.id}

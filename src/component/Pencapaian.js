@@ -1,21 +1,27 @@
 import React, { useState, useEffect } from 'react';
+import 'animate.css'; // Pastikan animate.css diimpor
 
 const Pencapaian = () => {
   const achievementsItems = [
-    { title: 'Land Mark Detection', description: 'by Face Recognition', image: '/images/menang1.png' },
-    { title: 'AI Object Counting', description: 'Embedded System', image: '/images/menang2.png' },
-    { title: 'IoT Monitoring', description: 'Real-Time Dashboard', image: '/images/menang3.png' },
-    { title: 'Object Detection', description: 'Real-Time Dashboard', image: 'https://via.placeholder.com/400x250' },
-    { title: 'Computer Vision', description: 'Real-Time Dashboard', image: 'https://via.placeholder.com/400x250' },
-    { title: 'Blockchain', description: 'Real-Time Dashboard', image: 'https://via.placeholder.com/400x250' },
-    { title: 'Door Lock System', description: 'by Face Recognition', image: 'https://via.placeholder.com/400x250' },
-    { title: 'AI Object Counting', description: 'Embedded System', image: 'https://via.placeholder.com/400x250' },
-    { title: 'IoT Monitoring', description: 'Real-Time Dashboard', image: 'https://via.placeholder.com/400x250' },
+    { title: 'AI Creation - Braincore', description: 'Competition', image: '/images/menang1.png', link: 'https://www.google.com' },
+    { title: 'Compfest 14 AIC', description: 'Competition', image: '/images/menang2.png', link: 'https://www.google.com' },
+    { title: 'Jatim Developer Day', description: 'Annual Event', image: '/images/menang3.png', link: 'https://www.google.com' },
+    { title: 'Object Detection', description: 'Real-Time Dashboard', image: 'https://via.placeholder.com/400x250', link: 'https://www.google.com' },
+    { title: 'Computer Vision', description: 'Real-Time Dashboard', image: 'https://via.placeholder.com/400x250', link: 'https://www.google.com' },
+    { title: 'Blockchain', description: 'Real-Time Dashboard', image: 'https://via.placeholder.com/400x250', link: 'https://www.google.com' },
+    { title: 'Door Lock System', description: 'by Face Recognition', image: 'https://via.placeholder.com/400x250', link: 'https://www.google.com' },
+    { title: 'AI Object Counting', description: 'Embedded System', image: 'https://via.placeholder.com/400x250', link: 'https://www.google.com' },
+    { title: 'IoT Monitoring', description: 'Real-Time Dashboard', image: 'https://via.placeholder.com/400x250', link: 'https://www.google.com' },
   ];
 
   const [showModal, setShowModal] = useState(false);
   const [isOpening, setIsOpening] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
+
+  const [isHeaderVisible, setIsHeaderVisible] = useState(false);
+  const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);  // Animasi untuk deskripsi
+  const [isCardsVisible, setIsCardsVisible] = useState(false);
+  const [isButtonVisible, setIsButtonVisible] = useState(false);
 
   useEffect(() => {
     if (showModal) {
@@ -41,17 +47,97 @@ const Pencapaian = () => {
 
   const initialItems = achievementsItems.slice(0, 3);
 
+  // IntersectionObserver untuk animasi
+  useEffect(() => {
+    const headerObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsHeaderVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const descriptionObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsDescriptionVisible(true); // Animasi untuk deskripsi
+        }
+      },
+      { threshold: 0.1 }
+    );
+    
+    const cardsObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsCardsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const buttonObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsButtonVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const headerElement = document.getElementById('achievements-header');
+    const descriptionElement = document.getElementById('achievements-description');  // Deskripsi
+    const cardsElement = document.getElementById('achievements-cards');
+    const buttonElement = document.getElementById('lihat-lebih-banyak');
+
+    if (headerElement) headerObserver.observe(headerElement);
+    if (descriptionElement) descriptionObserver.observe(descriptionElement); // Observasi deskripsi
+    if (cardsElement) cardsObserver.observe(cardsElement);
+    if (buttonElement) buttonObserver.observe(buttonElement);
+
+    return () => {
+      if (headerElement) headerObserver.unobserve(headerElement);
+      if (descriptionElement) descriptionObserver.unobserve(descriptionElement); // Unobserve deskripsi
+      if (cardsElement) cardsObserver.unobserve(cardsElement);
+      if (buttonElement) buttonObserver.unobserve(buttonElement);
+    };
+  }, []);
+
   return (
     <section id="achievements" className="bg-[#F3F5F9] py-24 px-4">
-      <h2 className="text-4xl font-bold text-center mb-4 text-[#38517E]">ACHIEVEMENTS</h2>
-      <p className="text-gray-600 text-center mb-12">
+      <h2
+        id="achievements-header"
+        className={`text-4xl font-bold text-center mb-4 text-[#38517E] ${
+          isHeaderVisible ? 'animate__animated animate__fadeInUp' : ''
+        }`}
+        style={{ animationDuration: '2s' }}
+      >
+        ACHIEVEMENTS
+      </h2>
+      <p
+        id="achievements-description" // Tambahkan id untuk deskripsi
+        className={`text-gray-600 text-center mb-12 ${
+          isDescriptionVisible ? 'animate__animated animate__fadeInUp' : ''
+        }`}
+        style={{ animationDuration: '2s', animationDelay: '0.5s' }}
+      >
         Beberapa prestasi yang sudah ditorehkan oleh Braincore dalam berbagai ajang kompetisi teknologi
       </p>
 
-      {/* achievements Cards - Hanya 3 Teratas */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 container mx-auto">
+      {/* Achievements Cards - Hanya 3 Teratas */}
+      <div
+        id="achievements-cards"
+        className={`grid grid-cols-1 md:grid-cols-3 gap-8 container mx-auto ${
+          isCardsVisible ? 'animate__animated animate__fadeIn' : ''
+        }`}
+        style={{ animationDuration: '2s', animationDelay: '0.7s' }}
+      >
         {initialItems.map((item, index) => (
-          <div key={index} className="relative group overflow-hidden rounded-lg shadow-lg">
+          <div 
+            key={index} 
+            className="relative group overflow-hidden rounded-lg shadow-lg cursor-pointer" 
+            onClick={() => window.open(item.link, '_blank')} // Navigasi ke link ketika card diklik
+          >
             <div className="aspect-w-16 aspect-h-9">
               <img
                 src={item.image}
@@ -71,12 +157,15 @@ const Pencapaian = () => {
 
       {/* Lihat Lebih Banyak */}
       <div className="text-center mt-8">
-        <button
-          onClick={handleOpenModal}
-          className="text-blue-500 font-semibold border-2 border-blue-500 px-6 py-2 rounded-full hover:bg-blue-500 hover:text-white transition duration-300 transform hover:scale-105"
-        >
-          Lihat Lebih Banyak
-        </button>
+      <button
+        id="lihat-lebih-banyak"
+        onClick={handleOpenModal}
+        className={`text-blue-500 font-semibold border-2 border-blue-500 px-6 py-2 rounded-full hover:bg-blue-500 hover:text-white transition duration-300 transform hover:scale-105 ${
+          isButtonVisible ? 'animate__animated animate__fadeInUp' : ''} ${isButtonVisible ? 'animate__animated animate__bounceIn' : ''}`}
+        style={{ animationDuration: '2s', animationDelay: '0.5s' }}
+      >
+        Lihat Lebih Banyak
+      </button>
       </div>
 
       {/* Modal */}
@@ -100,7 +189,7 @@ const Pencapaian = () => {
             <h3 className="text-2xl font-bold text-center mb-4">Seluruh Pencapaian</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {achievementsItems.map((item, index) => (
-                <div key={index} className="relative group overflow-hidden rounded-lg shadow-lg">
+                <div key={index} className="relative group overflow-hidden rounded-lg shadow-lg cursor-pointer" onClick={() => window.open(item.link, '_blank')}>
                   <div className="aspect-w-16 aspect-h-9">
                     <img
                       src={item.image}

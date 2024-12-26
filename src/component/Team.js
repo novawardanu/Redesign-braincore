@@ -8,10 +8,10 @@ function Carousel() {
 
   const team = [
     {
-      image: "/images/brazil.jpg",
+      image: "/images/eric.jpg",
       name: "Erik Julianto",
       role: "Research Analyst",
-      area: "Artificial Intelligence, Blockchain, Cyber Security",
+      area: "Artificial Intelligence, Blockchain, Internet of Things",
       socials: [
         {
           platform: "facebook",
@@ -28,10 +28,10 @@ function Carousel() {
       ],
     },
     {
-      image: "/images/brazil.jpg",
+      image: "/images/apis.jpg",
       name: "Apis",
-      role: "Research Analyst",
-      area: "Artificial Intelligence, Blockchain, Cyber Security",
+      role: "Project Manager",
+      area: "Project Management, Business Development, DevOps",
       socials: [
         {
           platform: "facebook",
@@ -48,10 +48,10 @@ function Carousel() {
       ],
     },
     {
-      image: "/images/brazil.jpg",
+      image: "/images/dian.jpg",
       name: "Dian Alhausari",
-      role: "Research Analyst",
-      area: "Artificial Intelligence, Blockchain, Cyber Security",
+      role: "Data Scientist",
+      area: "Artificial Intelligence, Data Analytics, Machine Learning",
       socials: [
         {
           platform: "facebook",
@@ -68,10 +68,10 @@ function Carousel() {
       ],
     },
     {
-      image: "/images/brazil.jpg",
-      name: "Gucci",
-      role: "Research Analyst",
-      area: "Artificial Intelligence, Blockchain, Cyber Security",
+      image: "/images/abdi.jpg",
+      name: "Abdi Negara Gucci",
+      role: "Data Scientist",
+      area: "Artificial Intelligence, Data Analytics, Computer Vision",
       socials: [
         {
           platform: "facebook",

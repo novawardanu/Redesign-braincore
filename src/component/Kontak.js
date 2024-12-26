@@ -1,18 +1,74 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import 'animate.css'; // Pastikan animate.css diimpor
 
 function Kontak() {
+  const [isHeaderVisible, setIsHeaderVisible] = useState(false);
+  const [isFormVisible, setIsFormVisible] = useState(false);
+
+  // Menggunakan Intersection Observer untuk mendeteksi kapan bagian ini terlihat
+  useEffect(() => {
+    const headerObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsHeaderVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const formObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsFormVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const headerElement = document.getElementById('contact-header');
+    const formElement = document.getElementById('contact-form');
+    
+    if (headerElement) headerObserver.observe(headerElement);
+    if (formElement) formObserver.observe(formElement);
+
+    return () => {
+      if (headerElement) headerObserver.unobserve(headerElement);
+      if (formElement) formObserver.unobserve(formElement);
+    };
+  }, []);
+
   return (
     <section
       id="contact"
-      className="py-16 bg-white flex flex-col items-center justify-center"
+      className="py-24 bg-white flex flex-col items-center justify-center"
     >
-      <h2 className="text-4xl font-bold text-center text-[#38517E] mb-4">
+      {/* Header */}
+      <h2
+        id="contact-header"
+        className={`text-4xl font-bold text-center text-[#38517E] mb-4 ${
+          isHeaderVisible ? 'animate__animated animate__fadeInUp' : ''
+        }`}
+        style={{ animationDuration: '2s' }}
+      >
         KONTAK
       </h2>
-      <p className="text-center text-gray-600 mb-8">
+      <p
+        className={`text-center text-gray-600 mb-8 ${
+          isHeaderVisible ? 'animate__animated animate__fadeInUp' : ''
+        }`}
+        style={{ animationDuration: '2s' }}
+      >
         Ada yang ingin disampaikan atau ditanyakan? Silahkan isi form di bawah ini
       </p>
-      <div className="bg-white shadow-md rounded-lg p-8 max-w-2xl w-full">
+
+      {/* Formulir Kontak */}
+      <div
+        id="contact-form"
+        className={`bg-white shadow-md rounded-lg p-8 max-w-2xl w-full ${
+          isFormVisible ? 'animate__animated animate__zoomIn' : ''
+        }`}
+        style={{ animationDuration: '2s' }}
+      >
         <form className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Nama */}
