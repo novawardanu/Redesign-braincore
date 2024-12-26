@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
 const Pencapaian = () => {
-  const pencapaianItems = [
-    { title: 'Door Lock System', description: 'by Face Recognition', image: '/images/achiv1.png' },
-    { title: 'AI Object Counting', description: 'Embedded System', image: '/images/achiv2.png' },
-    { title: 'IoT Monitoring', description: 'Real-Time Dashboard', image: '/images/achiv3.png' },
+  const achievementsItems = [
+    { title: 'Land Mark Detection', description: 'by Face Recognition', image: '/images/menang1.png' },
+    { title: 'AI Object Counting', description: 'Embedded System', image: '/images/menang2.png' },
+    { title: 'IoT Monitoring', description: 'Real-Time Dashboard', image: '/images/menang3.png' },
     { title: 'Object Detection', description: 'Real-Time Dashboard', image: 'https://via.placeholder.com/400x250' },
     { title: 'Computer Vision', description: 'Real-Time Dashboard', image: 'https://via.placeholder.com/400x250' },
     { title: 'Blockchain', description: 'Real-Time Dashboard', image: 'https://via.placeholder.com/400x250' },
@@ -39,7 +39,7 @@ const Pencapaian = () => {
     }, 500); // Durasi animasi tutup
   };
 
-  const initialItems = pencapaianItems.slice(0, 3);
+  const initialItems = achievementsItems.slice(0, 3);
 
   return (
     <section id="achievements" className="bg-[#F3F5F9] py-24 px-4">
@@ -48,12 +48,16 @@ const Pencapaian = () => {
         Beberapa prestasi yang sudah ditorehkan oleh Braincore dalam berbagai ajang kompetisi teknologi
       </p>
 
-      {/* Portfolio Cards - Hanya 3 Teratas */}
+      {/* achievements Cards - Hanya 3 Teratas */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 container mx-auto">
         {initialItems.map((item, index) => (
           <div key={index} className="relative group overflow-hidden rounded-lg shadow-lg">
-            <div className="w-full h-64 aspect-w-16 aspect-h-9">
-              <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
+            <div className="aspect-w-16 aspect-h-9">
+              <img
+                src={item.image}
+                alt={item.title}
+                className="w-full h-full object-cover"
+              />
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-blue-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-4">
               <div>
@@ -95,10 +99,14 @@ const Pencapaian = () => {
           >
             <h3 className="text-2xl font-bold text-center mb-4">Seluruh Pencapaian</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {pencapaianItems.map((item, index) => (
+              {achievementsItems.map((item, index) => (
                 <div key={index} className="relative group overflow-hidden rounded-lg shadow-lg">
-                  <div className="w-full h-48 aspect-w-16 aspect-h-9">
-                    <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
+                  <div className="aspect-w-16 aspect-h-9">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-blue-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-4">
                     <div>

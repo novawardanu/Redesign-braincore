@@ -13,14 +13,16 @@ const Konsultasi = () => {
           Konsultasikan proyek AI Anda bersama Braincore
         </p>
 
-        <div className="flex flex-col md:flex-row items-center justify-center md:justify-between gap-24 w-full">
+        <div className="flex flex-col md:flex-row items-center justify-center md:justify-between gap-12 md:gap-24 w-full">
           {/* Gambar Placeholder */}
           <div className="w-full md:w-1/3">
-            <img
-              src="https://via.placeholder.com/400x300?text=Gambar+Kosong"
-              alt="Placeholder Gambar"
-              className="w-full h-48 md:h-64 object-cover rounded-lg shadow-lg"
-            />
+            <div className="w-full h-0 pt-[56.25%] relative">
+              <img
+                src="/images/konsultasi.png"
+                alt="Placeholder Gambar"
+                className="absolute inset-0 w-full h-full object-cover rounded-lg shadow-lg"
+              />
+            </div>
           </div>
 
           {/* Konten */}

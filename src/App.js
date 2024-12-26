@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from './component/Navbar';
+import Chatbot from './component/Chatbot';
 import Layanan from './component/Layanan';
 import Portofolio from './component/Portofolio';
 import Konsultasi from './component/Konsultasi';
@@ -10,8 +11,11 @@ import Teknologi from './component/Teknologi';
 import TeamSection from './component/TeamSection';
 import Pencapaian from './component/Pencapaian';
 import Kontak from './component/Kontak';
-import Blog from './component/Blog'
+import Blog from './component/Blog';
+import FAQ from './component/FAQ';
 import Footer from './component/Footer';
+import 'animate.css';
+
 
 
 function App() {
@@ -96,6 +100,14 @@ function App() {
         <Blog />
       </section>
 
+      <section>
+        <Chatbot/>
+      </section>
+
+      <section>
+        <FAQ/>
+      </section>
+      
       <section>
         <Footer />
       </section>
