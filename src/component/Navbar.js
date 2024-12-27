@@ -2,32 +2,26 @@ import React, { useState, useEffect } from 'react';
 import '../style/Navbar.css';
 
 function Navbar() {
-  const [activeLink, setActiveLink] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
   const [isTransparent, setIsTransparent] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [activeLink, setActiveLink] = useState('');
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = document.querySelectorAll('section');
-      const navbarHeight = document.querySelector('nav').offsetHeight;
-
-      let currentSection = '';
-
-      sections.forEach((section) => {
-        const sectionTop = section.offsetTop - navbarHeight;
-        const sectionHeight = section.offsetHeight;
-
-        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-          currentSection = section.getAttribute('id');
-        }
-      });
-
-      setActiveLink(currentSection);
       setIsScrolled(window.scrollY > 0);
-
-      // Transparansi navbar hanya pada posisi scroll 0
       setIsTransparent(window.scrollY === 0);
+
+      const scrollPos = window.scrollY + window.innerHeight / 2;
+      const sections = navLinks.map(link => document.getElementById(link.id));
+
+      const currentSection = sections.find(
+        section =>
+          section.offsetTop <= scrollPos &&
+          section.offsetTop + section.offsetHeight > scrollPos
+      );
+
+      setActiveLink(currentSection ? currentSection.id : '');
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -59,16 +53,24 @@ function Navbar() {
         }`}
       >
         <div className="flex justify-between items-center">
-          <h1 className="text-white font-bold text-lg">Logo</h1>
+          <div className="flex items-center space-x-3">
+            <img
+                src="/images/logobraincore.png" // Ganti dengan path logo Anda
+                alt="Logo"
+                className="w-11 h-11" // Sesuaikan ukuran logo sesuai kebutuhan
+              />
+            <h1 className="text-white font-bold text-3xl">BRAINCORE.ID</h1>
+          </div>
+          
 
           {/* Desktop Nav Links */}
           <ul className="hidden md:flex space-x-6">
-            {navLinks.map((link) => (
+            {navLinks.map(link => (
               <li key={link.id}>
                 <a
                   href={`#${link.id}`}
-                  className={`text-white hover:text-blue-300 ${
-                    activeLink === link.id ? 'text-blue-300' : ''
+                  className={`text-white ${
+                    activeLink === link.id ? 'text-blue-300 ' : 'hover:text-blue-300'
                   }`}
                 >
                   {link.name}
@@ -115,11 +117,13 @@ function Navbar() {
             ✕
           </button>
           <ul className="space-y-4">
-            {navLinks.map((link) => (
+            {navLinks.map(link => (
               <li key={link.id}>
                 <a
                   href={`#${link.id}`}
-                  className={`hover:text-blue-300 ${activeLink === link.id ? 'text-blue-300' : ''}`}
+                  className={`hover:text-blue-300 ${
+                    activeLink === link.id ? 'text-blue-300 font-bold' : ''
+                  }`}
                   onClick={() => setIsSidebarOpen(false)}
                 >
                   {link.name}

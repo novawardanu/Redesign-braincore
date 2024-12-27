@@ -7,6 +7,7 @@ nav {
     border-left: 2px solid #ffffff33; /* Garis pemisah antara konten dan navbar */
     transition: background-color 0.8s ease-in-out, opacity 0.8s ease-in-out;
     will-change: background-color, opacity;
+    font-weight: 600;
   }
   
   ul {
@@ -29,5 +30,10 @@ nav {
   
   li a.text-blue-300 {
     color: #00bfff; /* Warna aktif */
+  }
+  
+  .active {
+    color: #00bfff; /* Warna aktif */
+    font-weight: bold; /* Gaya teks */
   }
   

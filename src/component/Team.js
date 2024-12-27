@@ -29,7 +29,7 @@ function Carousel() {
     },
     {
       image: "/images/apis.jpg",
-      name: "Apis",
+      name: "Alfizdiana Sholikhah",
       role: "Project Manager",
       area: "Project Management, Business Development, DevOps",
       socials: [

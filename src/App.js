@@ -45,7 +45,7 @@ function App() {
         <Teknologi />
       </section>
       
-      <section id="consultation" className="py-16 bg-[#38517E] flex items-center justify-center">
+      <section id="consultation" className="py-16 bg-[#38517E] flex items-center justify-center ">
         <Konsultasi />
       </section>
 
